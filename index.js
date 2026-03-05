@@ -3,21 +3,21 @@
  * @return {number}
  */
 
-let e = "pwwkew";
+let s = "cbaebabacd", p = "abc";
 
-var trap = function (e) {
-    let a=[];
-    for(let i=0;i<e.length;i++){
-        for(let j=i+1;j<=e.length;j++){
-            if(e[i]===e[j]) a[i]=j-i;
-            if(j===e.length) a[i]=5e4;
-        }
+var trap = function (s,p) {
+    let ans=[],tp=new Array(26).fill(0),sp=new Array(26).fill(0);
+    for(let i=0;i<p.length;i++){
+        tp[charCodeAt(p[i])-97]++;
     }
-    let now=1;
-    for(let i=0;i<e.length;i++){
-        if(a[i]){
-            
+    for(let i=0;i<s.length-p.length;i++){
+        sp[charCodeAt(s[i])-97]++;
+        if(sp==tp){
+            ans.push(i-p.length);
         }
+        if(i>=p.length)
+            sp[charCodeAt(s[i-p.length])-97]--;
     }
+    return ans;
 };
-console.log(trap(e));
+console.log(trap(s,p));
