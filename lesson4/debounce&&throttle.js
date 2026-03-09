@@ -45,7 +45,7 @@ input1.addEventListener('input', debounce(function(e) {
 }, 500));
 
 /**
- * 函数节流（最优版：立即执行 + 最后一次触发也执行）
+ * 函数节流
  * @param {Function} fn - 目标函数
  * @param {number} interval - 节流间隔
  * @returns {Function}
