@@ -77,7 +77,7 @@ fun2();
 //词法作用域：作用域是在代码写下来的位置向外去寻找的，而不是他执行的位置
 //作用域链：当在当前作用域找不到使用的变量的时候，会逐层往外层作用域去寻找，直到全局，如果全局还找不到就是not defined
 //闭包：内部作用域引用了外部作用域的东西，构成了一种带走了当时定义的词法作用域，要用变量去干活，闭包不一定会造成内存泄漏（立即执行）
-		// 闭包的作用：数据私有化
+// 闭包的作用：数据私有化
 
 // function fun2() {
 // 	let fun2Value = "hello world!";
@@ -112,9 +112,30 @@ function counter() {
 	}
 	return {
 		get,
-		add
-	}
+		add,
+	};
 }
 
 let op = counter();
 //课后作业：curring，weakmap（循环引用问题）
+
+function curry(fn) {
+	return function curried(...args) {
+		if (args.length >= fn.length) return fn(...args);
+		return (...nextArgs) => curried(...args, ...nextArgs);
+	};
+}
+
+function add(a, b, c) {
+	return a + b + c;
+}
+
+function add1(a) {
+	return b => {
+		return c => {
+			return a + b + c;
+		};
+	};
+}
+add(1)(2)(3)
+add(1)(2,3)
